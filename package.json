@@ -20,7 +20,6 @@
   "homepage": "https://github.com/rajkumarshahu/FriendFinder#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "faker": "^4.1.0",
-    "path": "^0.12.7"
+    "faker": "^4.1.0"
   }
 }

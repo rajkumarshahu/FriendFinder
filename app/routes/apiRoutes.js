@@ -1,8 +1,8 @@
-var express = require("express");
+
 var friendsData = require("../data/friends");
 
 
-var app = express();
+
 
 module.exports = function(app) {
 
