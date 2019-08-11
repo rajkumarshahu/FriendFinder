@@ -14,135 +14,186 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script></script>
+    <script>
+      $(function() {
+        $(".modal").modal();
+        var instance = M.Modal.getInstance($(".modal"));
+        $("#frmAboutYou").submit(function(e) {
+          e.preventDefault();
+          var data = [];
+
+          var data = {
+            name: $("#name").val(),
+            image_url: $("#image-url").val(),
+            scores: [
+              $("#q1").val(),
+              $("#q2").val(),
+              $("#q3").val(),
+              $("#q4").val(),
+              $("#q5").val(),
+              $("#q6").val(),
+              $("#q7").val(),
+              $("#q8").val(),
+              $("#q9").val(),
+              $("#q10").val(),
+            ],
+          };
+
+          var current_url = window.location.origin;
+
+          var url = current_url + "/api/friends";
+
+          $.post(url, data, function(response, status, xhr) {
+            console.log(response);
+            $("#modal1 div.modal-content h4").html(response[0].name);
+            $("#modal1 div.image_container").html(
+              "<img src='" + response[0].photo + "' />"
+            );
+            $("#modal1 div.score").html(response[1]);
+            instance.open();
+            console.log("success");
+          });
+        });
+        $("select").formSelect();
+      });
+    </script>
+
   </head>
   <body>
     <div class="container">
-      <form>
+      <h1>About you</h1>
+      <form id="frmAboutYou">
+        <div class="input-field col s6">
+          <input
+            placeholder="Your name ...."
+            id="name"
+            type="text"
+            class="validate"
+            required=""
+            aria-required="true"
+          />
+          <label for="name" data-error="wrong" data-success="right"
+            >Name:
+          </label>
+        </div>
+        <div class="input-field col s6">
+          <input
+            placeholder="Your image url ...."
+            id="image-url"
+            type="text"
+            class="validate"
+            required=""
+            aria-required="true"
+          />
+          <label for="image-url" data-error="wrong" data-success="right"
+            >Image Url:
+          </label>
+        </div>
         <div>
-          <h5 class="h5">Question 1</h5>
-          <select class="browser-default">
-            <option value="" disabled selected>Choose your option</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+          <h5 class="">Question 1. You are almost never late for your appointments</h5>
+          <h5></h5>
+          <select id="q1" class="options">
+            <option class="disabled" value="" disabled selected>Choose your option</option>
           </select>
         </div>
 
         <div>
-          <h5 class="h5">Question 2</h5>
-          <select class="browser-default">
+          <h5 class="h5">Question 2. When making a decision, you rely more on your feelings than on analysis of the situation</h5>
+          <select id="q2" class="options">
             <option value="" disabled selected>Choose your option</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
           </select>
         </div>
 
         <div>
-          <h5 class="h5">Question 3</h5>
-          <select class="browser-default">
+          <h5 class="h5">Question 3. You often think about humankind and its destiny</h5>
+          <select id="q3" class="options">
             <option value="" disabled selected>Choose your option</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
           </select>
         </div>
 
         <div>
-          <h5 class="h5">Question 4</h5>
-          <select class="browser-default">
+          <h5 class="h5">Question 4. You prefer to act immediately rather than speculate about various options</h5>
+          <select id="q4" class="options">
             <option value="" disabled selected>Choose your option</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+
           </select>
         </div>
 
         <div>
-          <h5 class="h5">Question 5</h5>
-          <select class="browser-default">
+          <h5 class="h5">Question 5. You trust reason rather than feelings</h5>
+          <select id="q5" class="options">
             <option value="" disabled selected>Choose your option</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+
           </select>
         </div>
 
         <div>
-          <h5 class="h5">Question 6</h5>
-          <select class="browser-default">
+          <h5 class="h5">Question 6. You are a person somewhat reserved and distant in communication</h5>
+          <select id="q6" class="options">
             <option value="" disabled selected>Choose your option</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+
           </select>
         </div>
 
         <div>
-          <h5 class="h5">Question 7</h5>
-          <select class="browser-default">
+          <h5 class="h5">Question 7. You frequently and easily express your feelings and emotions</h5>
+          <select id="q7" class="options">
             <option value="" disabled selected>Choose your option</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+
           </select>
         </div>
 
         <div>
-          <h5 class="h5">Question 8</h5>
-          <select class="browser-default">
+          <h5 class="h5">Question 8. You tend to rely on your experience rather than on theoretical alternatives</h5>
+          <select id="q8" class="options">
             <option value="" disabled selected>Choose your option</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+
           </select>
         </div>
 
         <div>
-          <h5 class="h5">Question 9</h5>
-          <select class="browser-default">
+          <h5 class="h5">Question 9. Often you prefer to read a book than go to a party</h5>
+          <select id="q9" class="options">
             <option value="" disabled selected>Choose your option</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+
           </select>
         </div>
 
         <div>
-          <h5 class="h5">Question 10</h5>
-          <select class="browser-default">
+          <h5 class="h5">Question 10. You are more inclined to experiment than to follow familiar approaches</h5>
+          <select id="q10" class="options">
             <option value="" disabled selected>Choose your option</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+
           </select>
         </div>
+        <button class="waves-effect waves-light btn">Submit</button>
       </form>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Your closest match friend</h4>
+        <div class="modal_content">
+          <div class="image_container"></div>
+          <div class="score"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat"
+          >Close</a
+        >
+      </div>
+    </div>
     <script>
-      $("select").formSelect();
-    </script>
+        for (var i = 1; i <= 5; i++) {
+          $(".options").append(
+            '<option value="' + i + '">' + i + "</option>"
+          );
+        }
+      </script>
   </body>
 </html>
