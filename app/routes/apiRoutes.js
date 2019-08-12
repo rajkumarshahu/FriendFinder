@@ -18,7 +18,7 @@ module.exports = function(app) {
       return a[1] - b[1];
     });
     console.log(close_match[0]);
-    //friendsData.push(req.body);
+    friendsData.push(req.body);
     res.json(close_match[0]);
   });
 };
