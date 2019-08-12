@@ -15,8 +15,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/style" />
 
-    <script></script>
     <script>
       $(function() {
         $(".modal").modal();
@@ -50,7 +50,7 @@
             console.log(response);
             $("#modal1 div.modal-content h4").html(response[0].name);
             $("#modal1 div.image_container").html(
-              "<img src='" + response[0].photo + "' />"
+              "<img class= responsive-img src='" + response[0].photo + "' />"
             );
             $("#modal1 div.score").html(response[1]);
             instance.open();
@@ -60,117 +60,178 @@
         $("select").formSelect();
       });
     </script>
-
   </head>
-  <body>
-    <div class="container">
-      <h1>About you</h1>
-      <form id="frmAboutYou">
-        <div class="input-field col s6">
-          <input
-            placeholder="Your name ...."
-            id="name"
-            type="text"
-            class="validate"
-            required=""
-            aria-required="true"
-          />
-          <label for="name" data-error="wrong" data-success="right"
-            >Name:
-          </label>
+  <body class="lime lighten-5">
+    <div class="container ">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text center-align">
+          <span class="card-title"><h1 class="">Survey Questions</h1> </span>
+          <div class="card-action center-align"></div>
         </div>
-        <div class="input-field col s6">
-          <input
-            placeholder="Your image url ...."
-            id="image-url"
-            type="text"
-            class="validate"
-            required=""
-            aria-required="true"
-          />
-          <label for="image-url" data-error="wrong" data-success="right"
-            >Image Url:
-          </label>
-        </div>
-        <div>
-          <h5 class="">Question 1. You are almost never late for your appointments</h5>
-          <h5></h5>
-          <select id="q1" class="options">
-            <option class="disabled" value="" disabled selected>Choose your option</option>
-          </select>
-        </div>
-
-        <div>
-          <h5 class="h5">Question 2. When making a decision, you rely more on your feelings than on analysis of the situation</h5>
-          <select id="q2" class="options">
-            <option value="" disabled selected>Choose your option</option>
-          </select>
-        </div>
-
-        <div>
-          <h5 class="h5">Question 3. You often think about humankind and its destiny</h5>
-          <select id="q3" class="options">
-            <option value="" disabled selected>Choose your option</option>
-          </select>
-        </div>
-
-        <div>
-          <h5 class="h5">Question 4. You prefer to act immediately rather than speculate about various options</h5>
-          <select id="q4" class="options">
-            <option value="" disabled selected>Choose your option</option>
-
-          </select>
-        </div>
-
-        <div>
-          <h5 class="h5">Question 5. You trust reason rather than feelings</h5>
-          <select id="q5" class="options">
-            <option value="" disabled selected>Choose your option</option>
-
-          </select>
-        </div>
-
-        <div>
-          <h5 class="h5">Question 6. You are a person somewhat reserved and distant in communication</h5>
-          <select id="q6" class="options">
-            <option value="" disabled selected>Choose your option</option>
-
-          </select>
-        </div>
-
-        <div>
-          <h5 class="h5">Question 7. You frequently and easily express your feelings and emotions</h5>
-          <select id="q7" class="options">
-            <option value="" disabled selected>Choose your option</option>
-
-          </select>
-        </div>
-
-        <div>
-          <h5 class="h5">Question 8. You tend to rely on your experience rather than on theoretical alternatives</h5>
-          <select id="q8" class="options">
-            <option value="" disabled selected>Choose your option</option>
-
-          </select>
-        </div>
-
-        <div>
-          <h5 class="h5">Question 9. Often you prefer to read a book than go to a party</h5>
-          <select id="q9" class="options">
-            <option value="" disabled selected>Choose your option</option>
-
-          </select>
-        </div>
-
-        <div>
-          <h5 class="h5">Question 10. You are more inclined to experiment than to follow familiar approaches</h5>
-          <select id="q10" class="options">
-            <option value="" disabled selected>Choose your option</option>
-
-          </select>
-        </div>
-        <button class="waves-effect waves-light btn">Submit</button>
-      </form>
+      </div>
+      <div>&nbsp;</div>
+      <h4 class="">About You</h4>
+      <div class="row">
+        <form id="frmAboutYou" class="col s12">
+          <div class="input-field col s6">
+            <input
+              id="name"
+              type="text"
+              class="validate"
+              required=""
+              aria-required="true"
+            />
+            <label for="name" data-error="wrong" data-success="right"
+              >Name (Required):
+            </label>
+          </div>
+          <div class="input-field col s6">
+            <input
+              id="image-url"
+              type="text"
+              class="validate"
+              required=""
+              aria-required="true"
+            />
+            <label for="image-url" data-error="wrong" data-success="right"
+              >Link to photo image (Required):
+            </label>
+          </div>
+          <div>&nbsp;</div>
+          <div class="padding">
+            <div class="">
+              <h5 class="">
+                <strong
+                  >Question 1. You are almost never late for your
+                  appointments</strong
+                >
+              </h5>
+              <select id="q1" class="options">
+                <option class="disabled " value="" disabled selected>
+                  Choose your option 1(Strongly Disagree) - 5(Strongly
+                  Agree)</option
+                >
+              </select>
+            </div>
+            <div>&nbsp;</div>
+            <div>
+              <h5 class="h5">
+                Question 2. When making a decision, you rely more on your
+                feelings than on analysis of the situation
+              </h5>
+              <select id="q2" class="options">
+                <option value="" disabled selected
+                  >Choose your option 1(Strongly Disagree) - 5(Strongly
+                  Agree)</option
+                >
+              </select>
+            </div>
+            <div>&nbsp;</div>
+            <div>
+              <h5 class="h5">
+                Question 3. You often think about humankind and its destiny
+              </h5>
+              <select id="q3" class="options">
+                <option value="" disabled selected
+                  >Choose your option 1(Strongly Disagree) - 5(Strongly
+                  Agree)</option
+                >
+              </select>
+            </div>
+            <div>&nbsp;</div>
+            <div>
+              <h5 class="h5">
+                Question 4. You prefer to act immediately rather than speculate
+                about various options
+              </h5>
+              <select id="q4" class="options">
+                <option value="" disabled selected
+                  >Choose your option 1(Strongly Disagree) - 5(Strongly
+                  Agree)</option
+                >
+              </select>
+            </div>
+            <div>&nbsp;</div>
+            <div>
+              <h5 class="h5">
+                Question 5. You trust reason rather than feelings
+              </h5>
+              <select id="q5" class="options">
+                <option value="" disabled selected
+                  >Choose your option 1(Strongly Disagree) - 5(Strongly
+                  Agree)</option
+                >
+              </select>
+            </div>
+            <div>&nbsp;</div>
+            <div>
+              <h5 class="h5">
+                Question 6. You are a person somewhat reserved and distant in
+                communication
+              </h5>
+              <select id="q6" class="options">
+                <option value="" disabled selected
+                  >Choose your option 1(Strongly Disagree) - 5(Strongly
+                  Agree)</option
+                >
+              </select>
+            </div>
+            <div>&nbsp;</div>
+            <div>
+              <h5 class="h5">
+                Question 7. You frequently and easily express your feelings and
+                emotions
+              </h5>
+              <select id="q7" class="options">
+                <option value="" disabled selected
+                  >Choose your option 1(Strongly Disagree) - 5(Strongly
+                  Agree)</option
+                >
+              </select>
+            </div>
+            <div>&nbsp;</div>
+            <div>
+              <h5 class="h5">
+                Question 8. You tend to rely on your experience rather than on
+                theoretical alternatives
+              </h5>
+              <select id="q8" class="options">
+                <option value="" disabled selected
+                  >Choose your option 1(Strongly Disagree) - 5(Strongly
+                  Agree)</option
+                >
+              </select>
+            </div>
+            <div>&nbsp;</div>
+            <div>
+              <h5 class="h5">
+                Question 9. Often you prefer to read a book than go to a party
+              </h5>
+              <select id="q9" class="options">
+                <option value="" disabled selected
+                  >Choose your option 1(Strongly Disagree) - 5(Strongly
+                  Agree)</option
+                >
+              </select>
+            </div>
+            <div>&nbsp;</div>
+            <div>
+              <h5 class="h5">
+                Question 10. You are more inclined to experiment than to follow
+                familiar approaches
+              </h5>
+              <select id="q10" class="options">
+                <option value="" disabled selected
+                  >Choose your option 1(Strongly Disagree) - 5(Strongly
+                  Agree)</option
+                >
+              </select>
+            </div>
+            <div>&nbsp;</div>
+            <button class="waves-effect waves-light btn">Submit</button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <!-- Modal Structure -->
@@ -189,11 +250,9 @@
       </div>
     </div>
     <script>
-        for (var i = 1; i <= 5; i++) {
-          $(".options").append(
-            '<option value="' + i + '">' + i + "</option>"
-          );
-        }
-      </script>
+      for (var i = 1; i <= 5; i++) {
+        $(".options").append('<option value="' + i + '">' + i + "</option>");
+      }
+    </script>
   </body>
 </html>
