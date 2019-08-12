@@ -50,7 +50,7 @@
           console.log(response);
           $("#modal1 div.modal-content h4").html(response[0].name);
           $("#modal1 div.image_container").html(
-            "<img src='" + response[0].image_url + "' />"
+            "<img class='circle responsive-img' src='" + response[0].image_url + "' />"
           );
           $("form").trigger("reset");
           $('select').find('option:first').attr('selected', 'selected');
@@ -216,14 +216,14 @@
   </div>
 
   <!-- Modal Structure -->
-  <div id="modal1" class="modal">
+  <div id="modal1" class="modal z-depth-3 lime lighten-4">
     <div class="modal-content">
       <h4 class="center-align">Your closest match friend</h4>
       <div class="modal_content">
         <div class="image_container center-align"></div>
       </div>
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer lime lighten-3">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
   </div>
