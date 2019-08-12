@@ -1,258 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Friend Finder</title>
 
-    <!-- Added link to the jQuery library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Friend Finder</title>
 
-    <!-- Compiled and minified CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/style" />
+  <!-- Added link to the jQuery library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <script>
-      $(function() {
-        $(".modal").modal();
-        var instance = M.Modal.getInstance($(".modal"));
-        $("#frmAboutYou").submit(function(e) {
-          e.preventDefault();
-          var data = [];
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/style" />
 
-          var data = {
-            name: $("#name").val(),
-            image_url: $("#image-url").val(),
-            scores: [
-              $("#q1").val(),
-              $("#q2").val(),
-              $("#q3").val(),
-              $("#q4").val(),
-              $("#q5").val(),
-              $("#q6").val(),
-              $("#q7").val(),
-              $("#q8").val(),
-              $("#q9").val(),
-              $("#q10").val(),
-            ],
-          };
+  <script>
+    $(function () {
+      $(".modal").modal();
+      var instance = M.Modal.getInstance($(".modal"));
+      $("#frmAboutYou").submit(function (e) {
+        e.preventDefault();
+        var data = [];
 
-          var current_url = window.location.origin;
+        var data = {
+          name: $("#name").val(),
+          image_url: $("#image-url").val(),
+          scores: [
+            $("#q1").val(),
+            $("#q2").val(),
+            $("#q3").val(),
+            $("#q4").val(),
+            $("#q5").val(),
+            $("#q6").val(),
+            $("#q7").val(),
+            $("#q8").val(),
+            $("#q9").val(),
+            $("#q10").val(),
+          ],
+        };
 
-          var url = current_url + "/api/friends";
+        var current_url = window.location.origin;
 
-          $.post(url, data, function(response, status, xhr) {
-            console.log(response);
-            $("#modal1 div.modal-content h4").html(response[0].name);
-            $("#modal1 div.image_container").html(
-              "<img class= responsive-img src='" + response[0].photo + "' />"
-            );
-            $("#modal1 div.score").html(response[1]);
-            instance.open();
-            console.log("success");
-          });
+        var url = current_url + "/api/friends";
+
+        $.post(url, data, function (response, status) {
+          console.log(response);
+          $("#modal1 div.modal-content h4").html(response[0].name);
+          $("#modal1 div.image_container").html(
+            "<img class= responsive-img src='" + response[0].photo + "' />"
+          );
+          $("#modal1 div.score").html(response[1]);
+          instance.open();
+          console.log("success");
         });
-        $("select").formSelect();
       });
-    </script>
-  </head>
-  <body class="lime lighten-5">
-    <div class="container ">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text center-align">
-          <span class="card-title"><h1 class="">Survey Questions</h1> </span>
-          <div class="card-action center-align"></div>
-        </div>
+      $("select").formSelect();
+      $("select[required]").css({ display: "block", height: 0, padding: 0, width: 0, position: 'absolute' });
+
+    });
+  </script>
+</head>
+
+<body class="lime lighten-5">
+  <div class="container ">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text center-align">
+        <span class="card-title">
+          <h1 class="">Survey Questions</h1>
+        </span>
+        <div class="card-action center-align"></div>
       </div>
-      <div>&nbsp;</div>
-      <h4 class="">About You</h4>
-      <div class="row">
-        <form id="frmAboutYou" class="col s12">
+    </div>
+
+
+    <div class="row">
+      <form id="frmAboutYou" class="col s12">
+
+        <div class="text-inputs">
+          <h4 class="">About You</h4>
           <div class="input-field col s6">
-            <input
-              id="name"
-              type="text"
-              class="validate"
-              required=""
-              aria-required="true"
-            />
-            <label for="name" data-error="wrong" data-success="right"
-              >Name (Required):
+            <input id="name" type="text" class="validate" required="" aria-required="true" />
+            <label for="name" data-error="wrong" data-success="right">Name (Required):
             </label>
           </div>
           <div class="input-field col s6">
-            <input
-              id="image-url"
-              type="text"
-              class="validate"
-              required=""
-              aria-required="true"
-            />
-            <label for="image-url" data-error="wrong" data-success="right"
-              >Link to photo image (Required):
+            <input id="image-url" type="text" class="validate" required="" aria-required="true" />
+            <label for="image-url" data-error="wrong" data-success="right">Link to photo image (Required):
             </label>
+          </div>
+        </div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div class="padding">
+          <div class="">
+            <h5 class="">
+              Question 1. You are almost never late for your appointments
+            </h5>
+            <select id="q1" class="options validate" required="required">
+              <option value="" disabled selected>Choose your option 1(Strongly Disagree) - 5(Strongly Agree)</option>
+            </select>
           </div>
           <div>&nbsp;</div>
-          <div class="padding">
-            <div class="">
-              <h5 class="">
-                <strong
-                  >Question 1. You are almost never late for your
-                  appointments</strong
-                >
-              </h5>
-              <select id="q1" class="options">
-                <option class="disabled " value="" disabled selected>
-                  Choose your option 1(Strongly Disagree) - 5(Strongly
-                  Agree)</option
-                >
-              </select>
-            </div>
-            <div>&nbsp;</div>
-            <div>
-              <h5 class="h5">
-                Question 2. When making a decision, you rely more on your
-                feelings than on analysis of the situation
-              </h5>
-              <select id="q2" class="options">
-                <option value="" disabled selected
-                  >Choose your option 1(Strongly Disagree) - 5(Strongly
-                  Agree)</option
-                >
-              </select>
-            </div>
-            <div>&nbsp;</div>
-            <div>
-              <h5 class="h5">
-                Question 3. You often think about humankind and its destiny
-              </h5>
-              <select id="q3" class="options">
-                <option value="" disabled selected
-                  >Choose your option 1(Strongly Disagree) - 5(Strongly
-                  Agree)</option
-                >
-              </select>
-            </div>
-            <div>&nbsp;</div>
-            <div>
-              <h5 class="h5">
-                Question 4. You prefer to act immediately rather than speculate
-                about various options
-              </h5>
-              <select id="q4" class="options">
-                <option value="" disabled selected
-                  >Choose your option 1(Strongly Disagree) - 5(Strongly
-                  Agree)</option
-                >
-              </select>
-            </div>
-            <div>&nbsp;</div>
-            <div>
-              <h5 class="h5">
-                Question 5. You trust reason rather than feelings
-              </h5>
-              <select id="q5" class="options">
-                <option value="" disabled selected
-                  >Choose your option 1(Strongly Disagree) - 5(Strongly
-                  Agree)</option
-                >
-              </select>
-            </div>
-            <div>&nbsp;</div>
-            <div>
-              <h5 class="h5">
-                Question 6. You are a person somewhat reserved and distant in
-                communication
-              </h5>
-              <select id="q6" class="options">
-                <option value="" disabled selected
-                  >Choose your option 1(Strongly Disagree) - 5(Strongly
-                  Agree)</option
-                >
-              </select>
-            </div>
-            <div>&nbsp;</div>
-            <div>
-              <h5 class="h5">
-                Question 7. You frequently and easily express your feelings and
-                emotions
-              </h5>
-              <select id="q7" class="options">
-                <option value="" disabled selected
-                  >Choose your option 1(Strongly Disagree) - 5(Strongly
-                  Agree)</option
-                >
-              </select>
-            </div>
-            <div>&nbsp;</div>
-            <div>
-              <h5 class="h5">
-                Question 8. You tend to rely on your experience rather than on
-                theoretical alternatives
-              </h5>
-              <select id="q8" class="options">
-                <option value="" disabled selected
-                  >Choose your option 1(Strongly Disagree) - 5(Strongly
-                  Agree)</option
-                >
-              </select>
-            </div>
-            <div>&nbsp;</div>
-            <div>
-              <h5 class="h5">
-                Question 9. Often you prefer to read a book than go to a party
-              </h5>
-              <select id="q9" class="options">
-                <option value="" disabled selected
-                  >Choose your option 1(Strongly Disagree) - 5(Strongly
-                  Agree)</option
-                >
-              </select>
-            </div>
-            <div>&nbsp;</div>
-            <div>
-              <h5 class="h5">
-                Question 10. You are more inclined to experiment than to follow
-                familiar approaches
-              </h5>
-              <select id="q10" class="options">
-                <option value="" disabled selected
-                  >Choose your option 1(Strongly Disagree) - 5(Strongly
-                  Agree)</option
-                >
-              </select>
-            </div>
-            <div>&nbsp;</div>
-            <button class="waves-effect waves-light btn">Submit</button>
+          <div>
+            <h5 class="h5">
+              Question 2. When making a decision, you rely more on your
+              feelings than on analysis of the situation
+            </h5>
+            <select id="q2" class="options validate" required="required">
+              <option value="" disabled selected>Choose your option 1(Strongly Disagree) - 5(Strongly Agree)</option>
+            </select>
           </div>
-        </form>
-      </div>
-    </div>
-
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal">
-      <div class="modal-content">
-        <h4>Your closest match friend</h4>
-        <div class="modal_content">
-          <div class="image_container"></div>
-          <div class="score"></div>
+          <div>&nbsp;</div>
+          <div>
+            <h5 class="h5">
+              Question 3. You often think about humankind and its destiny
+            </h5>
+            <select id="q3" class="options validate" required="required">
+              <option value="" disabled selected>Choose your option 1(Strongly Disagree) - 5(Strongly Agree)</option>
+            </select>
+          </div>
+          <div>&nbsp;</div>
+          <div>
+            <h5 class="h5">
+              Question 4. You prefer to act immediately rather than speculate about various options
+            </h5>
+            <select id="q4" class="options validate" required="required">
+              <option value="" disabled selected>Choose your option 1(Strongly Disagree) - 5(Strongly Agree)</option>
+            </select>
+          </div>
+          <div>&nbsp;</div>
+          <div>
+            <h5 class="h5">
+              Question 5. You trust reason rather than feelings
+            </h5>
+            <select id="q5" class="options validate" required="required">
+              <option value="" disabled selected>Choose your option 1(Strongly Disagree) - 5(Strongly Agree)</option>
+            </select>
+          </div>
+          <div>&nbsp;</div>
+          <div>
+            <h5 class="h5">
+              Question 6. You are a person somewhat reserved and distant in
+              communication
+            </h5>
+            <select id="q6" class="options validate" required="required">
+              <option value="" disabled selected>Choose your option 1(Strongly Disagree) - 5(Strongly Agree)</option>
+            </select>
+          </div>
+          <div>&nbsp;</div>
+          <div>
+            <h5 class="h5">
+              Question 7. You frequently and easily express your feelings and emotions
+            </h5>
+            <select id="q7" class="options validate" required="required">
+              <option value="" disabled selected>Choose your option 1(Strongly Disagree) - 5(Strongly Agree)</option>
+            </select>
+          </div>
+          <div>&nbsp;</div>
+          <div>
+            <h5 class="h5">
+              Question 8. You tend to rely on your experience rather than on theoretical alternatives
+            </h5>
+            <select id="q8" class="options validate" required="required">
+              <option value="" disabled selected>Choose your option 1(Strongly Disagree) - 5(Strongly Agree)</option>
+            </select>
+          </div>
+          <div>&nbsp;</div>
+          <div>
+            <h5 class="h5">
+              Question 9. Often you prefer to read a book than go to a party
+            </h5>
+            <select id="q9" class="options validate" required="required">
+              <option value="" disabled selected>Choose your option 1(Strongly Disagree) - 5(Strongly Agree)</option>
+            </select>
+          </div>
+          <div>&nbsp;</div>
+          <div>
+            <h5 class="h5">
+              Question 10. You are more inclined to experiment than to follow
+              familiar approaches
+            </h5>
+            <select id="q10" class="options validate" required="required">
+              <option value="" disabled selected>Choose your option 1(Strongly Disagree) - 5(Strongly Agree)</option>
+            </select>
+          </div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <button class="waves-effect waves-light btn btn-large button ">&nbsp;<i
+              class="large material-icons">check_circle</i>Submit</button>
         </div>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat"
-          >Close</a
-        >
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Your closest match friend</h4>
+      <div class="modal_content">
+        <div class="image_container"></div>
+        <div class="score"></div>
       </div>
     </div>
-    <script>
-      for (var i = 1; i <= 5; i++) {
-        $(".options").append('<option value="' + i + '">' + i + "</option>");
-      }
-    </script>
-  </body>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+  <script>
+    for (var i = 1; i <= 5; i++) {
+      $(".options").append('<option value="' + i + '">' + i + "</option>");
+    }
+  </script>
+</body>
+
 </html>
