@@ -22,6 +22,7 @@ module.exports = function(app) {
       return a[1] - b[1];
     });
     //console.log(close_match[0]);
+    console.log((req.body))
 
     if(!matched_names.includes(req.body.name)) {
       friendsData.push(req.body);
